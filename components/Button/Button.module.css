@@ -42,8 +42,8 @@
 }
 
 .down {
-	transform: rotate(90deg);
 	transition: all 0.33s;
+	transform: rotate(90deg);
 }
 
 .primary svg path,

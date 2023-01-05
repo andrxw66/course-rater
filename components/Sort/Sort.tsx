@@ -1,6 +1,6 @@
 import React from 'react'
 import { SortEnum, SortProps } from './Sort.props'
-import SortIcon from './Sort.svg'
+import SortIcon from './sort.svg'
 import cn from 'classnames'
 import styles from './Sort.module.css'
 

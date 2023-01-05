@@ -1,7 +1,7 @@
 import React from 'react'
 import { HhDataProps } from './HhData.props'
 import styles from './HhData.module.css'
-import RateIcon from './Rate.svg'
+import RateIcon from './rate.svg'
 import { Card } from '..'
 import { priceRU } from '../../helpers/helpers'
 

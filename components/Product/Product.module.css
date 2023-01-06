@@ -35,6 +35,14 @@
 	white-space: nowrap;
 }
 
+.rateTitle a {
+	color: var(--primary);
+}
+
+.rateTitle a:hover {
+	text-decoration: underline;
+}
+
 .hr,
 .description {
 	grid-column: start / end;

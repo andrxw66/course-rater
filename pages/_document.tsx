@@ -13,7 +13,7 @@ class MyDocument extends Document {
 		return (
 			<Html lang='en'>
 				<Head>
-					<title>Courses Rates</title>
+					<title>Course Rating</title>
 					<link href='/favicon.ico' />
 					<link rel="preconnect" href="https://fonts.googleapis.com" />
 					<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='anonymous' />

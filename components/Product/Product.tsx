@@ -35,25 +35,37 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
 			behavior: 'smooth',
 			block: 'start'
 		})
+		reviewRef.current?.focus()
 	}
 
 	return (
 		<div className={className} {...props} ref={ref}>
 			<Card className={styles.product}>
-				<div className={styles.logo}><Image width={70} height={70} src={process.env.NEXT_PUBLIC_DOMAIN + product.image} alt={product.title} /></div>
+				<div className={styles.logo}>
+					<Image width={70} height={70} src={process.env.NEXT_PUBLIC_DOMAIN + product.image} alt={product.title} />
+				</div>
 				<div className={styles.title}>{product.title}</div>
 				<div className={styles.price}>
 					{priceRU(product.price)}
-					{product.oldPrice && <Tag className={styles.oldPrice} color='green'>{priceRU(product.price - product.oldPrice)}</Tag>}
+					{product.oldPrice &&
+						<Tag className={styles.oldPrice} color='green'>
+							{priceRU(product.price - product.oldPrice)}
+						</Tag>}
 				</div>
 				<div className={styles.credit}>
 					{priceRU(product.credit)}/<span className={styles.month}>month</span>
 				</div>
 				<div className={styles.rating}><Rating rating={product.reviewAvg ?? product.initialRating} /></div>
-				<div className={styles.tags}>{product.categories.map(c => <Tag key={c} className={styles.category} color='ghost'>{c}</Tag>)}</div>
+				<div className={styles.tags}>
+					{product.categories.map(c => <Tag key={c} className={styles.category} color='ghost'>{c}</Tag>)}
+				</div>
 				<div className={styles.priceTitle}>Price</div>
 				<div className={styles.creditTitle}>Credit</div>
-				<div className={styles.rateTitle}><a href='#ref' onClick={scrollToReview}>{product.reviewCount} {declOfNum(product.reviewCount, ['rate', 'rates'])}</a></div>
+				<div className={styles.rateTitle}>
+					<a href='#ref' onClick={scrollToReview}>
+						{product.reviewCount} {declOfNum(product.reviewCount, ['rate', 'rates'])}
+					</a>
+				</div>
 				<Divider className={styles.hr} />
 				<div className={styles.description}>{product.description}</div>
 				<div className={styles.feature}>
@@ -86,7 +98,14 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
 				<Divider className={styles.hr} />
 				<div className={styles.actions}>
 					<Button appearance='primary'>Learn more</Button>
-					<Button appearance='ghost' arrow={isOpened ? 'down' : 'right'} className={styles.reviewBtn} onClick={() => setIsOpened(!isOpened)}>Read reviews</Button>
+					<Button
+						appearance='ghost'
+						arrow={isOpened ? 'down' : 'right'}
+						className={styles.reviewBtn}
+						onClick={() => setIsOpened(!isOpened)}
+					>
+						Read reviews
+					</Button>
 				</div>
 			</Card>
 			<motion.div
@@ -94,17 +113,16 @@ export const Product = motion(forwardRef(({ product, className, ...props }: Prod
 				variants={variants}
 				initial={'hidden'}
 				animate={isOpened ? 'visible' : 'hidden'}
-				ref={reviewRef}
 				style={{ overflow: 'hidden' }}
 			>
-				<Card color='blue' className={styles.reviews}>
+				<Card color='blue' ref={reviewRef} className={styles.reviews} tabIndex={isOpened ? 0 : -1}>
 					{product.reviews.map(r => (
 						<div key={r._id}>
 							<Review review={r} />
 							<Divider />
 						</div>
 					))}
-					<ReviewForm productId={product._id} />
+					<ReviewForm productId={product._id} isOpened={isOpened} />
 				</Card>
 			</motion.div>
 		</div>

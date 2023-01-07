@@ -12,7 +12,7 @@ import { IReviewForm, IReviewSendResponse } from './IReviewForm'
 import axios from 'axios'
 import { API } from '../../helpers/api'
 
-export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps): JSX.Element => {
+export const ReviewForm = ({ productId, className, isOpened, ...props }: ReviewFormProps): JSX.Element => {
 
 	const { register, control, handleSubmit, formState: { errors }, reset } = useForm<IReviewForm>()
 
@@ -43,12 +43,14 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps):
 						{...register('name', { required: { value: true, message: 'Field is required!' } })}
 						placeholder='Name'
 						error={errors.name}
+						tabIndex={isOpened ? 0 : -1}
 					/>
 					<Input
 						{...register('title', { required: { value: true, message: 'Field is required!' } })}
 						placeholder='Review title'
 						className={styles.title}
 						error={errors.title}
+						tabIndex={isOpened ? 0 : -1}
 					/>
 					<div className={styles.rating}>
 						<span>Rate: </span>
@@ -63,6 +65,7 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps):
 									ref={field.ref}
 									setRating={field.onChange}
 									error={errors.rating}
+									tabIndex={isOpened ? 0 : -1}
 								/>
 							)}
 						/>
@@ -72,11 +75,18 @@ export const ReviewForm = ({ productId, className, ...props }: ReviewFormProps):
 						placeholder='Review text'
 						className={styles.description}
 						error={errors.description}
-
+						tabIndex={isOpened ? 0 : -1}
 					/>
 					<div className={styles.submit}>
-						<Button appearance='primary'>Submit</Button>
-						<span className={styles.info}>* Before publication, the review will be pre-moderated and checked</span>
+						<Button
+							appearance='primary'
+							tabIndex={isOpened ? 0 : -1}
+						>
+							Submit
+						</Button>
+						<span className={styles.info}>
+							* Before publication, the review will be pre-moderated and checked
+						</span>
 					</div>
 				</div>
 				{isSuccess && <div className={cn(styles.panel, styles.success)}>

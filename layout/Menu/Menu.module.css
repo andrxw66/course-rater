@@ -56,10 +56,10 @@
 	cursor: pointer;
 
 	color: var(--gray-dark);
+	outline-offset: -2px;
 
 	font-size: 14px;
 	font-weight: 500;
-	outline-offset: -2px;
 }
 
 .thirdLevelActive,

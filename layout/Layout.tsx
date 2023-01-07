@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState, KeyboardEvent, useRef } from 'react'
 import { Footer } from './Footer/Footer'
 import { Header } from './Header/Header'
 import { SideBar } from './SideBar/SideBar'
@@ -6,15 +6,40 @@ import { LayoutProps } from './Layout.props'
 import styles from './Layout.module.css'
 import { AppContextProvider, IAppContext } from '../context/app.context'
 import { Up } from '../components'
+import cn from 'classnames'
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
+
+	const [isOpened, setIsOpened] = useState<boolean>(false)
+
+	const bodyRef = useRef<HTMLDivElement>(null)
+
+	const skipContentAction = (key: KeyboardEvent) => {
+		if (key.code == 'Space' || key.code == 'Enter') {
+			key.preventDefault()
+			bodyRef.current?.focus()
+		}
+		setIsOpened(false)
+	}
+
 	return (
 		<div className={styles.wrapper}>
+			<a
+				onFocus={() => setIsOpened(true)}
+				href=''
+				tabIndex={1}
+				className={cn(styles.skipLink, {
+					[styles.displayed]: isOpened
+				})}
+				onKeyDown={skipContentAction}
+			>
+				Straight to content
+			</a>
 			<Header className={styles.header} />
 			<SideBar className={styles.sidebar} />
-			<main className={styles.body}>
+			<div tabIndex={0} className={styles.body} ref={bodyRef}>
 				{children}
-			</main>
+			</div>
 			<Footer className={styles.footer} />
 			<Up />
 		</div>

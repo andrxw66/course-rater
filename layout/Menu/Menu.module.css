@@ -59,7 +59,7 @@
 
 	font-size: 14px;
 	font-weight: 500;
-	line-height: 19px;
+	outline-offset: -2px;
 }
 
 .thirdLevelActive,

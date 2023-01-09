@@ -4,12 +4,18 @@ import close from './cross.svg'
 import menu from './menu.svg'
 
 export const icons = {
-	up, close, menu
+  up,
+  close,
+  menu,
 }
 
 export type IconName = keyof typeof icons
 
-export interface ButtonIconProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-	icon: IconName
-	appearance: 'white' | 'primary'
+export interface ButtonIconProps
+  extends DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
+  icon: IconName
+  appearance: 'white' | 'primary'
 }

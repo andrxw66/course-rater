@@ -2,6 +2,10 @@
 	display: none;
 }
 
+.sortName {
+	display: none;
+}
+
 .active .sortIcon {
 	display: block;
 

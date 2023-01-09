@@ -6,9 +6,7 @@ import { MenuItem } from '../interfaces/IMenu'
 import { withLayout } from '../layout/Layout'
 
 const Search = () => {
-	return (
-		<div>Search</div>
-	)
+	return <div>Search</div>
 }
 
 export default withLayout(Search)
@@ -27,6 +25,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 }
 
 interface HomeProps extends Record<string, unknown> {
-	menu: MenuItem[];
-	firstCategory: number;
+	menu: MenuItem[]
+	firstCategory: number
 }

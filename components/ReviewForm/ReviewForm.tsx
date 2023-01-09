@@ -12,16 +12,29 @@ import { IReviewForm, IReviewSendResponse } from './IReviewForm'
 import axios from 'axios'
 import { API } from '../../helpers/api'
 
-export const ReviewForm = ({ productId, className, isOpened, ...props }: ReviewFormProps): JSX.Element => {
-
-	const { register, control, handleSubmit, formState: { errors }, reset } = useForm<IReviewForm>()
+export const ReviewForm = ({
+	productId,
+	className,
+	isOpened,
+	...props
+}: ReviewFormProps): JSX.Element => {
+	const {
+		register,
+		control,
+		handleSubmit,
+		formState: { errors },
+		reset
+	} = useForm<IReviewForm>()
 
 	const [isSuccess, setIsSuccess] = useState<boolean>(false)
 	const [error, setError] = useState<string>()
 
 	const onSubmit = async (formData: IReviewForm) => {
 		try {
-			const { data } = await axios.post<IReviewSendResponse>(API.review.createDemo, { ...formData, productId })
+			const { data } = await axios.post<IReviewSendResponse>(
+				API.review.createDemo,
+				{ ...formData, productId }
+			)
 			if (data.message) {
 				setIsSuccess(true)
 				reset()
@@ -40,14 +53,18 @@ export const ReviewForm = ({ productId, className, isOpened, ...props }: ReviewF
 			<>
 				<div className={cn(styles.reviewForm, className)} {...props}>
 					<Input
-						{...register('name', { required: { value: true, message: 'Field is required!' } })}
-						placeholder='Name'
+						{...register('name', {
+							required: { value: true, message: 'Field is required!' }
+						})}
+						placeholder="Name"
 						error={errors.name}
 						tabIndex={isOpened ? 0 : -1}
 					/>
 					<Input
-						{...register('title', { required: { value: true, message: 'Field is required!' } })}
-						placeholder='Review title'
+						{...register('title', {
+							required: { value: true, message: 'Field is required!' }
+						})}
+						placeholder="Review title"
 						className={styles.title}
 						error={errors.title}
 						tabIndex={isOpened ? 0 : -1}
@@ -56,8 +73,10 @@ export const ReviewForm = ({ productId, className, isOpened, ...props }: ReviewF
 						<span>Rate: </span>
 						<Controller
 							control={control}
-							rules={{ required: { value: true, message: 'Indicate the rating' } }}
-							name='rating'
+							rules={{
+								required: { value: true, message: 'Indicate the rating' }
+							}}
+							name="rating"
 							render={({ field }) => (
 								<Rating
 									isEditable
@@ -71,17 +90,17 @@ export const ReviewForm = ({ productId, className, isOpened, ...props }: ReviewF
 						/>
 					</div>
 					<Textarea
-						{...register('description', { required: { value: true, message: 'Field is required!' } })}
-						placeholder='Review text'
+						{...register('description', {
+							required: { value: true, message: 'Field is required!' }
+						})}
+						placeholder="Review text"
 						className={styles.description}
 						error={errors.description}
 						tabIndex={isOpened ? 0 : -1}
+						aria-label="Review text"
 					/>
 					<div className={styles.submit}>
-						<Button
-							appearance='primary'
-							tabIndex={isOpened ? 0 : -1}
-						>
+						<Button appearance="primary" tabIndex={isOpened ? 0 : -1}>
 							Submit
 						</Button>
 						<span className={styles.info}>
@@ -89,15 +108,29 @@ export const ReviewForm = ({ productId, className, isOpened, ...props }: ReviewF
 						</span>
 					</div>
 				</div>
-				{isSuccess && <div className={cn(styles.panel, styles.success)}>
-					<div className={styles.successTitle}>Your review send!</div>
-					<div className={styles.successDescription}>Thank you! Your review will be published after verification.</div>
-					<CloseIcon className={styles.close} onClick={() => setIsSuccess(false)} />
-				</div>}
-				{error && <div className={cn(styles.panel, styles.error)}>
-					<div className={styles.successTitle}>Something went wrong, try to reload page!</div>
-					<CloseIcon className={styles.close} onClick={() => setError(undefined)} />
-				</div>}
+				{isSuccess && (
+					<div className={cn(styles.panel, styles.success)}>
+						<div className={styles.successTitle}>Your review send!</div>
+						<div className={styles.successDescription}>
+							Thank you! Your review will be published after verification.
+						</div>
+						<CloseIcon
+							className={styles.close}
+							onClick={() => setIsSuccess(false)}
+						/>
+					</div>
+				)}
+				{error && (
+					<div className={cn(styles.panel, styles.error)}>
+						<div className={styles.successTitle}>
+							Something went wrong, try to reload page!
+						</div>
+						<CloseIcon
+							className={styles.close}
+							onClick={() => setError(undefined)}
+						/>
+					</div>
+				)}
 			</>
 		</form>
 	)

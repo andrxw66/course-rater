@@ -5,7 +5,6 @@ import { motion, useAnimation } from 'framer-motion'
 import { ButtonIcon } from '../ButtonIcon/ButtonIcon'
 
 export const Up = () => {
-
 	const controls = useAnimation()
 
 	const y = useScrollY()
@@ -27,7 +26,7 @@ export const Up = () => {
 			className={styles.up}
 			initial={{ opacity: 0 }}
 		>
-			<ButtonIcon appearance='primary' icon='up' onClick={scrollToTop} />
+			<ButtonIcon appearance="primary" icon="up" onClick={scrollToTop} />
 		</motion.div>
 	)
 }

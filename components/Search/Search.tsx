@@ -8,7 +8,6 @@ import SearchIcon from './glass.svg'
 import { useRouter } from 'next/router'
 
 export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
-
 	const [search, setSearch] = useState<string>('')
 	const router = useRouter()
 
@@ -28,21 +27,22 @@ export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
 	}
 
 	return (
-		<div className={cn(className, styles.search)} {...props}>
+		<form className={cn(className, styles.search)} {...props} role="search">
 			<Input
-				placeholder='Search...'
+				placeholder="Search..."
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
 				className={styles.input}
 				onKeyDown={handleKeyDown}
 			/>
 			<Button
-				appearance='primary'
+				appearance="primary"
 				className={styles.button}
 				onClick={goToSearch}
+				aria-label="Search on site"
 			>
 				<SearchIcon />
 			</Button>
-		</div>
+		</form>
 	)
 }

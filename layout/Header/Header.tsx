@@ -9,7 +9,6 @@ import { SideBar } from '../SideBar/SideBar'
 import { useRouter } from 'next/router'
 
 export const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
-
 	const [isOpened, setIsOpened] = useState<boolean>(false)
 	const shouldReduceMotion = useReducedMotion()
 	const router = useRouter()
@@ -28,14 +27,18 @@ export const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
 		},
 		closed: {
 			opacity: shouldReduceMotion ? 1 : 0,
-			x: '100%',
+			x: '100%'
 		}
 	}
 
 	return (
 		<header className={cn(className, styles.header)} {...props}>
 			<Logo />
-			<ButtonIcon appearance='white' icon='menu' onClick={() => setIsOpened(true)} />
+			<ButtonIcon
+				appearance="white"
+				icon="menu"
+				onClick={() => setIsOpened(true)}
+			/>
 			<motion.div
 				className={styles.mobileMenu}
 				variants={variants}
@@ -43,7 +46,12 @@ export const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
 				animate={isOpened ? 'opened' : 'closed'}
 			>
 				<SideBar />
-				<ButtonIcon className={styles.menuClose} appearance='white' icon='close' onClick={() => setIsOpened(false)} />
+				<ButtonIcon
+					className={styles.menuClose}
+					appearance="white"
+					icon="close"
+					onClick={() => setIsOpened(false)}
+				/>
 			</motion.div>
 		</header>
 	)

@@ -23,6 +23,7 @@ class MyDocument extends Document {
 					<title>Course Rating</title>
 					<link href="/favicon.ico" />
 					<link rel="preconnect" href="https://fonts.googleapis.com" />
+					<link rel="preconnect" href="https://mc.yandex.ru" />
 					<link
 						rel="preconnect"
 						href="https://fonts.gstatic.com"
@@ -32,6 +33,7 @@ class MyDocument extends Document {
 						href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;700&display=swap"
 						rel="stylesheet"
 					/>
+					<meta property="og:locale" content="en_EN" />
 				</Head>
 				<body>
 					<Main />

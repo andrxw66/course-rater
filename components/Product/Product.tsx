@@ -55,22 +55,22 @@ export const Product = motion(
 						</div>
 						<div className={styles.title}>{product.title}</div>
 						<div className={styles.price}>
-							<span className="visualyHidden">price</span>
+							<span className="visuallyHidden">price</span>
 							{priceRU(product.price)}
 							{product.oldPrice && (
 								<Tag className={styles.oldPrice} color="green">
-									<span className="visualyHidden">discount</span>
+									<span className="visuallyHidden">discount</span>
 									{priceRU(product.price - product.oldPrice)}
 								</Tag>
 							)}
 						</div>
 						<div className={styles.credit}>
-							<span className="visualyHidden">credit</span>
+							<span className="visuallyHidden">credit</span>
 							{priceRU(product.credit)}/
 							<span className={styles.month}>month</span>
 						</div>
 						<div className={styles.rating}>
-							<span className="visualyHidden">
+							<span className="visuallyHidden">
 								{'rating' + (product.reviewAvg ?? product.initialRating)}
 							</span>
 							<Rating rating={product.reviewAvg ?? product.initialRating} />

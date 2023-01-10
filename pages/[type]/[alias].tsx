@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
+import Head from 'next/head'
 import { ParsedUrlQuery } from 'querystring'
 import React from 'react'
 import { API } from '../../helpers/api'
@@ -16,11 +17,20 @@ export const TopPage = ({
 	products
 }: TopPageProps): JSX.Element => {
 	return (
-		<TopPageComponent
-			firstCategory={firstCategory}
-			page={page}
-			products={products}
-		/>
+		<>
+			<Head>
+				<title>{page.metaTitle}</title>
+				<meta name="description" content={page.metaDescription} />
+				<meta property="og:title" content={page.metaTitle} />
+				<meta property="og:description" content={page.metaDescription} />
+				<meta property="og:type" content="article" />
+			</Head>
+			<TopPageComponent
+				firstCategory={firstCategory}
+				page={page}
+				products={products}
+			/>
+		</>
 	)
 }
 

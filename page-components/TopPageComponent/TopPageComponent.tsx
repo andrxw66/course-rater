@@ -5,6 +5,7 @@ import styles from './TopPageComponent.module.css'
 import { TopLevelCategory } from '../../interfaces/IPage'
 import { SortEnum } from '../../components/Sort/Sort.props'
 import { sortReducer } from './sort.reducer'
+import { useReducedMotion } from 'framer-motion'
 
 export const TopPageComponent = ({
 	products,
@@ -15,6 +16,8 @@ export const TopPageComponent = ({
 		sortReducer,
 		{ products, sort: SortEnum.Rating }
 	)
+
+	const shouldReduceMotion = useReducedMotion()
 
 	const setSort = (sort: SortEnum) => {
 		dispatchSort({ type: sort })
@@ -35,9 +38,16 @@ export const TopPageComponent = ({
 				)}
 				<Sort sort={sort} setSort={setSort} />
 			</div>
-			<div>
+			<div role="list">
 				{sortedProducts &&
-					sortedProducts.map((p) => <Product layout product={p} key={p._id} />)}
+					sortedProducts.map((p) => (
+						<Product
+							role="listitem"
+							layout={shouldReduceMotion ? false : true}
+							product={p}
+							key={p._id}
+						/>
+					))}
 			</div>
 			<div className={styles.hhTitle}>
 				<Htag tag="h2">Vacancies - {page.category}</Htag>

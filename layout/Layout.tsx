@@ -31,7 +31,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
 			<a
 				onFocus={() => setIsOpened(true)}
 				href=""
-				tabIndex={1}
+				tabIndex={0}
 				className={cn(styles.skipLink, {
 					[styles.displayed]: isOpened
 				})}

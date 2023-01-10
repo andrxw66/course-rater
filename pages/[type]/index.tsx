@@ -14,7 +14,7 @@ const Type = ({ firstCategory }: TypeProps) => {
 export const getStaticPaths: GetStaticPaths = async () => {
 	return {
 		paths: firstLevelMenu.map((m) => '/' + m.route),
-		fallback: true
+		fallback: false
 	}
 }
 

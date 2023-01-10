@@ -104,7 +104,11 @@ export const ReviewForm = ({
 						aria-invalid={errors.description ? true : false}
 					/>
 					<div className={styles.submit}>
-						<Button appearance="primary" tabIndex={isOpened ? 0 : -1} onClick={() => clearErrors()}>
+						<Button
+							appearance="primary"
+							tabIndex={isOpened ? 0 : -1}
+							onClick={() => clearErrors()}
+						>
 							Submit
 						</Button>
 						<span className={styles.info}>
@@ -113,24 +117,32 @@ export const ReviewForm = ({
 					</div>
 				</div>
 				{isSuccess && (
-					<div className={cn(styles.panel, styles.success)} role='alert'>
+					<div className={cn(styles.panel, styles.success)} role="alert">
 						<div className={styles.successTitle}>Your review send!</div>
 						<div className={styles.successDescription}>
 							Thank you! Your review will be published after verification.
 						</div>
-						<button onClick={() => setIsSuccess(false)} className={styles.close} aria-label='Close alert'>
-						 	<CloseIcon/>
-						</button>				
+						<button
+							onClick={() => setIsSuccess(false)}
+							className={styles.close}
+							aria-label="Close alert"
+						>
+							<CloseIcon />
+						</button>
 					</div>
 				)}
 				{error && (
-					<div className={cn(styles.panel, styles.error)} role='alert'>
+					<div className={cn(styles.panel, styles.error)} role="alert">
 						<div className={styles.successTitle}>
 							Something went wrong, try to reload page!
 						</div>
-						<button onClick={() => setError(undefined)} className={styles.close} aria-label='Close alert'>
-						 	<CloseIcon/>
-						</button>		
+						<button
+							onClick={() => setError(undefined)}
+							className={styles.close}
+							aria-label="Close alert"
+						>
+							<CloseIcon />
+						</button>
 					</div>
 				)}
 			</>

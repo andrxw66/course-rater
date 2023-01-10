@@ -46,7 +46,7 @@ export const Product = motion(
 				<div className={className} {...props} ref={ref}>
 					<Card className={styles.product}>
 						<div className={styles.logo}>
-							<Image
+							<img
 								width={70}
 								height={70}
 								src={process.env.NEXT_PUBLIC_DOMAIN + product.image}

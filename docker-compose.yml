@@ -2,7 +2,7 @@ version: '3'
 services:
   app:
     image: course-rate
-    container_name: course-rate
+    container_name: rating-app
     restart: always
     ports:
     - 3000:3000 

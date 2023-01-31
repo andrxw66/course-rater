@@ -15,7 +15,7 @@ jobs:
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           registry: docker.pkg.github.com
-          name: aanndrewss/rating-app/rating-app
+          name: docker.pkg.github.com/aanndrewss/rating-app/rating-app
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           tags: 'develop'

@@ -1,7 +1,8 @@
 {
-	"name": "rating-app",
+	"name": "course-rater",
 	"version": "0.1.0",
 	"private": true,
+  "author": "andrxw66",
 	"scripts": {
 		"prepare": "husky install",
 		"dev": "next dev",
